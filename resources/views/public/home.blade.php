@@ -116,6 +116,11 @@
             border-color: var(--blue);
             box-shadow: 0 0 0 3px rgba(35, 71, 224, .1);
         }
+        .search-panel input, .search-panel select { transition: border-color .2s, box-shadow .2s; }
+        .search-panel input:hover, .search-panel select:hover {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(35, 71, 224, .06);
+        }
         .btn {
             display: inline-flex;
             min-height: 43px;
@@ -259,8 +264,9 @@
                 value="{{ request('search') }}"
                 placeholder="Cari nama barang, deskripsi, atau lokasi..."
                 aria-label="Kata kunci pencarian"
+                title="Ketik nama barang, deskripsi, atau lokasi untuk mencari"
             >
-            <select name="category_id" aria-label="Filter kategori">
+            <select name="category_id" aria-label="Filter kategori" title="Pilih kategori untuk menyaring daftar barang">
                 <option value="">Semua Kategori</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" @selected((string) request('category_id') === (string) $category->id)>

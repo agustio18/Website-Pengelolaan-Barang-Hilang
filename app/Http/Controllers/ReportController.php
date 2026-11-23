@@ -15,14 +15,13 @@ class ReportController extends Controller
             'reporter_name' => ['required', 'string', 'max:120'],
             'reporter_phone' => ['required', 'string', 'max:40'],
             'category_id' => ['required', 'exists:categories,id'],
+            'item_name' => ['required', 'string', 'max:120'],
             'description' => ['required', 'string', 'max:2000'],
             'location' => ['required', 'string', 'max:180'],
             'event_date' => ['required', 'date', 'before_or_equal:today'],
             'receiver_staff' => [$type === 'found' ? 'required' : 'nullable', 'string', 'max:120'],
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
         ]);
-        $description = trim($data['description']);
-        $data['item_name'] = Str::limit(implode(' ', array_slice(preg_split('/\s+/', $description), 0, 3)), 100, '');
         $data['type'] = $type;
         $data['status'] = 'pending';
         $data['code'] = strtoupper($type === 'lost' ? 'LH' : 'LT').'-'.now()->format('ymd').'-'.Str::upper(Str::random(5));
