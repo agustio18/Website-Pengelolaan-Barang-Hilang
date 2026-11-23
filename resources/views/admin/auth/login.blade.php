@@ -140,7 +140,7 @@
         <form action="{{ route('admin.authenticate') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="email">Email Administrator</label>
+                <label for="email">Email</label>
                 <input
                     id="email"
                     type="email"
