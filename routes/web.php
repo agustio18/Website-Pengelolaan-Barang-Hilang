@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Admin\AuthController;
 
 /*
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\AuthController;
 */
 Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/lapor/{type}', [PublicController::class, 'create'])->whereIn('type', ['lost', 'found'])->name('reports.create');
+Route::post('/lapor/{type}', [ReportController::class, 'store'])->whereIn('type', ['lost', 'found'])->name('reports.store');
 Route::get('/barang/{report}', [PublicController::class, 'show'])->name('reports.show');
 
 /*
