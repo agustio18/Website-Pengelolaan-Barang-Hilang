@@ -56,14 +56,4 @@ class PublicController extends Controller
 
         return view('public.form', compact('type', 'categories'));
     }
-
-    public function show(Report $report)
-    {
-        // Detail publik hanya boleh diakses untuk barang temuan terverifikasi.
-        abort_unless($report->type === 'found' && $report->status === 'verified', 404);
-
-        $report->load('category');
-
-        return view('public.show', compact('report'));
-    }
 }

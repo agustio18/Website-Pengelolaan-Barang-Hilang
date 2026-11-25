@@ -300,7 +300,6 @@
                         Lokasi ditemukan: {{ $report->location }}<br>
                         Tanggal ditemukan: {{ $report->event_date?->format('d M Y') ?? '-' }}
                     </div>
-                    <a class="btn" href="{{ route('reports.show', $report) }}">Detail &amp; Klaim</a>
                 </article>
             @empty
                 <div class="empty-state">
