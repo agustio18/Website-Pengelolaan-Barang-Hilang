@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\Admin\HandoverController;
 
 Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/lapor/{type}', [PublicController::class, 'create'])->whereIn('type', ['lost', 'found'])->name('reports.create');
@@ -22,4 +23,6 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/verification', [VerificationController::class, 'index'])->name('verification.index');
     Route::post('/verification/{report}/approve', [VerificationController::class, 'approve'])->name('verification.approve');
     Route::post('/verification/{report}/reject', [VerificationController::class, 'reject'])->name('verification.reject');
+    Route::get('/handovers', [HandoverController::class, 'index'])->name('handovers.index');
+    Route::post('/handovers/{report}', [HandoverController::class, 'store'])->name('handovers.store');
 });
